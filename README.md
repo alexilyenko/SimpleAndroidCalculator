@@ -1,2 +1,2 @@
 # SimpleCalculator
-This is a simple Calculator using RxJava for demonstration purposes
+This is a Simple Android Calculator written using JavaRX for demonstration purposes in my [blog](https://alexilyenko.github.io/).
