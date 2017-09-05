@@ -10,4 +10,6 @@ abstract class BaseScreen(private val device: UiDevice) {
     val id = "${InstrumentationRegistry.getTargetContext().packageName}:id"
 
     fun find(by: BySelector): UiObject2 = device.findObject(by)
+
+    fun click(by: BySelector) = find(by).click()
 }

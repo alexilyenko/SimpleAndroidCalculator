@@ -5,16 +5,19 @@ import android.support.test.uiautomator.UiDevice
 
 
 class CalculatorScreen(device: UiDevice) : BaseScreen(device) {
+
     private val plusButton = By.res("$id/button_add")
+    private val multiplyButton = By.res("$id/button_multi")
     private val equalButton = By.res("$id/button_calc")
     private val resetButton = By.res("$id/button_all_clear")
     private val screen = By.res("$id/field")
 
     private val numberPattern = "$id/button_%s"
+    private val delimiterRegex = Regex("[.,]")
 
     val numberOnScreen: Int
         get() = find(screen).text
-                .replace(Regex("[.,]"), "")
+                .replace(delimiterRegex, "")
                 .toInt()
 
     fun enter(number: Int): CalculatorScreen {
@@ -23,13 +26,16 @@ class CalculatorScreen(device: UiDevice) : BaseScreen(device) {
     }
 
     fun plus(number: Int): CalculatorScreen {
-        val plus = find(plusButton)
-        plus.click()
-
+        click(plusButton)
         inputNumber(number)
+        click(equalButton)
+        return this
+    }
 
-        val equal = find(equalButton)
-        equal.click()
+    fun multiply(by: Int): CalculatorScreen {
+        click(multiplyButton)
+        inputNumber(by)
+        click(equalButton)
         return this
     }
 
@@ -37,13 +43,11 @@ class CalculatorScreen(device: UiDevice) : BaseScreen(device) {
             .toString()
             .toCharArray()
             .forEach {
-                val digit = find(By.res(String.format(numberPattern, it)))
-                digit.click()
+                click(By.res(String.format(numberPattern, it)))
             }
 
     fun reset(): CalculatorScreen {
-        val reset = find(resetButton)
-        reset.click()
+        click(resetButton)
         return this
     }
 }

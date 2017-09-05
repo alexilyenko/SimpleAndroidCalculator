@@ -7,10 +7,10 @@ import org.junit.Test
 
 class PageObjectTests : BaseTest() {
 
-    private val randomNumber: Int get() = (Math.random() * 10000).toInt()
+    private val randomNumber: Int get() = (Math.random() * 1000).toInt()
 
     @Test
-    fun addition() {
+    fun plus() {
         val firstNumber = randomNumber
         val secondNumber = randomNumber
 
@@ -32,5 +32,19 @@ class PageObjectTests : BaseTest() {
                 .numberOnScreen
 
         assertEquals(result, 0)
+    }
+
+    @Test
+    fun multiply() {
+        val firstNumber = randomNumber
+        val secondNumber = randomNumber
+
+        val calculator = CalculatorScreen(device)
+        val result = calculator
+                .enter(firstNumber)
+                .multiply(by = secondNumber)
+                .numberOnScreen
+
+        assertEquals(result, firstNumber * secondNumber)
     }
 }
