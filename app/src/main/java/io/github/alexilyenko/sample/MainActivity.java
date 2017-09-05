@@ -17,30 +17,10 @@ import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
 
-    private enum Figure {
-        ADD, SUB, MULTI, DIV, NONE;
-
-        private BigDecimal calc(BigDecimal arg1, BigDecimal arg2) {
-            switch (this) {
-                case ADD:
-                    return arg1.add(arg2);
-                case SUB:
-                    return arg1.subtract(arg2);
-                case MULTI:
-                    return arg1.multiply(arg2);
-                case DIV:
-                    return arg1.divide(arg2, 8, BigDecimal.ROUND_HALF_UP);
-                default:
-                    return arg2;
-            }
-        }
-    }
-
     private static final DecimalFormat FORMATTER = new DecimalFormat("#,###.#") {{
         setMinimumFractionDigits(0);
         setMaximumFractionDigits(8);
     }};
-
     private BigDecimal field = BigDecimal.ZERO;
     private BigDecimal stack = BigDecimal.ZERO;
     private Figure currentFigure = Figure.NONE;
@@ -93,5 +73,25 @@ public class MainActivity extends AppCompatActivity {
                 binding.field.setText(FORMATTER.format(field));
             }
         });
+    }
+
+    private enum Figure {
+        ADD, SUB, MULTI, DIV, NONE;
+
+        private BigDecimal calc(BigDecimal arg1, BigDecimal arg2) {
+            switch (this) {
+                case ADD:
+                    return arg1.add(arg2);
+                case SUB:
+                    return arg1.subtract(arg2);
+                case MULTI:
+                    return arg1.multiply(arg2);
+                case DIV:
+                    return arg1.divide(arg2, 8, BigDecimal.ROUND_HALF_UP);
+                default:
+                    return arg2;
+            }
+        }
+
     }
 }
