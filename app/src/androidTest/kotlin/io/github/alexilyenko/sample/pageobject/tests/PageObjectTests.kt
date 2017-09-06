@@ -1,6 +1,6 @@
 package io.github.alexilyenko.sample.pageobject.tests
 
-import io.github.alexilyenko.sample.pageobject.screens.CalculatorScreen
+import io.github.alexilyenko.sample.pageobject.screens.Calculator
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -14,24 +14,20 @@ class PageObjectTests : BaseTest() {
         val firstNumber = randomNumber
         val secondNumber = randomNumber
 
-        val calculator = CalculatorScreen(device)
-        val result = calculator
+        val calculator = Calculator(on = device)
                 .enter(firstNumber)
                 .plus(secondNumber)
-                .numberOnScreen
 
-        assertEquals(result, firstNumber + secondNumber)
+        assertEquals(calculator.numberOnScreen, firstNumber + secondNumber)
     }
 
     @Test
     fun reset() {
-        val calculator = CalculatorScreen(device)
-        val result = calculator
+        val calculator = Calculator(on = device)
                 .enter(randomNumber)
                 .reset()
-                .numberOnScreen
 
-        assertEquals(result, 0)
+        assertEquals(calculator.numberOnScreen, 0)
     }
 
     @Test
@@ -39,12 +35,10 @@ class PageObjectTests : BaseTest() {
         val firstNumber = randomNumber
         val secondNumber = randomNumber
 
-        val calculator = CalculatorScreen(device)
-        val result = calculator
+        val calculator = Calculator(on = device)
                 .enter(firstNumber)
                 .multiply(by = secondNumber)
-                .numberOnScreen
 
-        assertEquals(result, firstNumber * secondNumber)
+        assertEquals(calculator.numberOnScreen, firstNumber * secondNumber)
     }
 }

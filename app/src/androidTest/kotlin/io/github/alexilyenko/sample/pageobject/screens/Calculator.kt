@@ -4,7 +4,7 @@ import android.support.test.uiautomator.By
 import android.support.test.uiautomator.UiDevice
 
 
-class CalculatorScreen(device: UiDevice) : BaseScreen(device) {
+class Calculator(on: UiDevice) : BaseScreen(on) {
 
     private val plusButton = By.res("$id/button_add")
     private val multiplyButton = By.res("$id/button_multi")
@@ -20,19 +20,19 @@ class CalculatorScreen(device: UiDevice) : BaseScreen(device) {
                 .replace(delimiterRegex, "")
                 .toInt()
 
-    fun enter(number: Int): CalculatorScreen {
+    fun enter(number: Int): Calculator {
         inputNumber(number)
         return this
     }
 
-    fun plus(number: Int): CalculatorScreen {
+    fun plus(number: Int): Calculator {
         click(plusButton)
         inputNumber(number)
         click(equalButton)
         return this
     }
 
-    fun multiply(by: Int): CalculatorScreen {
+    fun multiply(by: Int): Calculator {
         click(multiplyButton)
         inputNumber(by)
         click(equalButton)
@@ -46,7 +46,7 @@ class CalculatorScreen(device: UiDevice) : BaseScreen(device) {
                 click(By.res(String.format(numberPattern, it)))
             }
 
-    fun reset(): CalculatorScreen {
+    fun reset(): Calculator {
         click(resetButton)
         return this
     }
