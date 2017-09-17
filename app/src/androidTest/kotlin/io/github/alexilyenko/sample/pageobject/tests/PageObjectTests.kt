@@ -42,7 +42,7 @@ class PageObjectTests : BaseTest() {
     fun minus() {
         val calculator = Calculator(on = device)
                 .enter(firstNumber)
-                .minus(number = secondNumber)
+                .minus(secondNumber)
 
         assertEquals(firstNumber - secondNumber, calculator.numberOnScreen)
     }
@@ -50,7 +50,7 @@ class PageObjectTests : BaseTest() {
     @Test
     fun minusZero() {
         val calculator = Calculator(on = device)
-                .minus(number = firstNumber)
+                .minus(firstNumber)
 
         assertEquals(-firstNumber, calculator.numberOnScreen)
     }
