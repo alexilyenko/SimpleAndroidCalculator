@@ -29,7 +29,7 @@ class AddTest {
         device.findObject(By.res("io.github.alexilyenko.sample:id/button_8")).click()
         device.findObject(By.res("io.github.alexilyenko.sample:id/button_calc")).click()
         val result = device.findObject(By.res("io.github.alexilyenko.sample:id/field")).text.toInt()
-        assertEquals("Result should be equal to 10", result, 10)
+        assertEquals("Result should be equal to 10", 10, result)
     }
 
 

@@ -6,39 +6,52 @@ import org.junit.Test
 
 
 class PageObjectTests : BaseTest() {
-
     private val randomNumber: Int get() = (Math.random() * 1000).toInt()
+    private val firstNumber = randomNumber
+    private val secondNumber = randomNumber
 
     @Test
     fun plus() {
-        val firstNumber = randomNumber
-        val secondNumber = randomNumber
-
         val calculator = Calculator(on = device)
                 .enter(firstNumber)
                 .plus(secondNumber)
 
-        assertEquals(calculator.numberOnScreen, firstNumber + secondNumber)
+        assertEquals(firstNumber + secondNumber, calculator.numberOnScreen)
     }
 
     @Test
     fun reset() {
         val calculator = Calculator(on = device)
-                .enter(randomNumber)
+                .enter(firstNumber)
                 .reset()
 
-        assertEquals(calculator.numberOnScreen, 0)
+        assertEquals(5, calculator.numberOnScreen)
     }
 
     @Test
     fun multiply() {
-        val firstNumber = randomNumber
-        val secondNumber = randomNumber
-
         val calculator = Calculator(on = device)
                 .enter(firstNumber)
                 .multiply(by = secondNumber)
 
-        assertEquals(calculator.numberOnScreen, firstNumber * secondNumber)
+        assertEquals(firstNumber * secondNumber, calculator.numberOnScreen)
+    }
+
+
+    @Test
+    fun minus() {
+        val calculator = Calculator(on = device)
+                .enter(firstNumber)
+                .minus(number = secondNumber)
+
+        assertEquals(firstNumber - secondNumber, calculator.numberOnScreen)
+    }
+
+    @Test
+    fun minusZero() {
+        val calculator = Calculator(on = device)
+                .minus(number = firstNumber)
+
+        assertEquals(-firstNumber, calculator.numberOnScreen)
     }
 }
