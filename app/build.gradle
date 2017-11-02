@@ -5,10 +5,10 @@ apply plugin: 'spoon'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
-        applicationId "io.github.alexilyenko.sample"
+        applicationId "io.github.alexilyenko.SimpleCalculator"
         minSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -40,10 +40,10 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 
-    androidTestCompile 'com.android.support.test:runner:1.0.0'
-    androidTestCompile 'com.android.support.test:rules:1.0.0'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test:rules:1.0.1'
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
-    androidTestCompile  "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    androidTestCompile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     androidTestCompile 'com.squareup.spoon:spoon-client:1.7.1'
 }
 
